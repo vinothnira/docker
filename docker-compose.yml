@@ -1,0 +1,18 @@
+# docker-compose.yml
+
+version: "3.3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=test@123
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
